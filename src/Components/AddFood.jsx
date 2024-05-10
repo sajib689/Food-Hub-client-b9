@@ -3,56 +3,38 @@ import Swal from "sweetalert2";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { AuthContext } from "../Provider/AuthProvider";
+import axios from "axios";
 AOS.init();
 const AddFood = () => {
   const { user } = useContext(AuthContext);
   const handlePostSpot = (e) => {
     e.preventDefault();
     const form = e.target;
-    const tourist_spot_name = form.tourist_spot_name.value;
-    const country_name = form.country_name.value;
-    const location = form.location.value;
-    const short_description = form.short_description.value;
-    const average_cost = form.average_cost.value;
-    const image = form.image.value;
-    const seasonality = form.seasonality.value;
-    const travel_time = form.travel_time.value;
-    const total_visitors_per_year = form.total_visitors_per_year.value;
-    const email = user?.email;
-    const name = user?.displayName;
-    const spots = {
-      email,
-      name,
-      image,
-      tourist_spot_name,
-      country_name,
-      location,
-      short_description,
-      average_cost,
-      seasonality,
-      travel_time,
-      total_visitors_per_year,
-    };
-    fetch("https://assignment-10-mocha.vercel.app/spots", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(spots),
+    const food_image = form.food_image.value 
+    const food_name = form.food_name.value
+    const quantity = form.quantity.value
+    const pickup_location = form.pickup_location.value
+    const expired_date_time = form.expired_date.value
+    const additional_notes = form.additional_notes.value 
+    const donatorImage = user?.photoURL
+    const donatorName = user?.displayName
+    const donatorEmail = user?.email
+    const foods = {
+        donatorImage,
+        donatorName,
+        donatorEmail,
+        food_image,
+        food_name,
+        quantity,
+        pickup_location,
+        expired_date_time,
+        additional_notes,
+        
+    }
+    axios.post('http://localhost:3000/foods', foods)
+    .then( res => {
+        console.log(res.data)
     })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
-          Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Spot Add Success!",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
-    form.reset();
   };
   // bg-white dark:bg-gray-800
   return (
