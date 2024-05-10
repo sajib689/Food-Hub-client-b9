@@ -4,6 +4,7 @@ import Home from "../Pages/Home";
 import Error from "../Components/Error";
 import Login from "../Authorization/Login";
 import Register from "../Authorization/Register";
+import AddFood from "../Components/AddFood";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
         {
             path: "/",
             element: <Home/>
+        },
+        {
+            path: "/addFood",
+            element: <AddFood/>
         },
         {
             path: "/login",
