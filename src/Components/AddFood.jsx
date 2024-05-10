@@ -10,12 +10,12 @@ const AddFood = () => {
   const handlePostSpot = (e) => {
     e.preventDefault();
     const form = e.target;
-    const food_image = form.food_image.value 
-    const food_name = form.food_name.value
+    const foodImage = form.food_image.value 
+    const foodName = form.food_name.value
     const quantity = form.quantity.value
-    const pickup_location = form.pickup_location.value
-    const expired_date_time = form.expired_date.value
-    const additional_notes = form.additional_notes.value 
+    const pickupLocation = form.pickup_location.value
+    const expiredDateTime = form.expired_date_time.value;
+    const additionalNotes = form.additional_notes.value 
     const donatorImage = user?.photoURL
     const donatorName = user?.displayName
     const donatorEmail = user?.email
@@ -23,17 +23,27 @@ const AddFood = () => {
         donatorImage,
         donatorName,
         donatorEmail,
-        food_image,
-        food_name,
+        foodImage,
+        foodName,
         quantity,
-        pickup_location,
-        expired_date_time,
-        additional_notes,
+        pickupLocation,
+        expiredDateTime,
+        additionalNotes,
         
     }
     axios.post('http://localhost:3000/foods', foods)
     .then( res => {
-        console.log(res.data)
+      
+        if(res.data){
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "Your product has been saved",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              form.reset()
+        }
     })
   };
   // bg-white dark:bg-gray-800
