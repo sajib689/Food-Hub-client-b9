@@ -46,7 +46,7 @@ const AddFood = () => {
         }
     })
   };
-  // bg-white dark:bg-gray-800
+
   return (
     <section
       data-aos="fade-down-right"

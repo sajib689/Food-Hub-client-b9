@@ -1,20 +1,28 @@
 import { useQuery } from "@tanstack/react-query";
 import FeaturedCard from "./FeaturedCard";
+import Loader from './Loader';
 
 
 const Featured = () => {
-    const { isPending, error, data } = useQuery({
-        queryKey: ['repoData'],
+    const { isPending, data } = useQuery({
+        
+        queryKey: ['data'],
         queryFn: () =>
           fetch('http://localhost:3000/foods')
         .then((res) =>
             res.json(),
           ),
-      })
+      }
+    )
+    if (isPending) {
+        return <Loader/>
+      }
+    
      let foods = []
      if(data){
         foods = data.sort((a,b) => b.quantity - a.quantity)
      }
+     
     return (
         <div>
         <div className="container mb-12  px-6 py-10 mx-auto text-center">
