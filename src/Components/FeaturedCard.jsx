@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
+
 const FeaturedCard = ({ food }) => {
   const {
+  _id,
     foodImage,
     foodName,
     donatorImage,
@@ -37,10 +40,11 @@ const FeaturedCard = ({ food }) => {
           </div>
           <h1 className="text-white">{donatorName}</h1>
         </div>
-        <button className="px-2 py-1 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-blue-500 rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none hover:text-black">
+        <Link to={`/foodDetails/${_id}`} className="px-2 py-1 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-blue-500 rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none hover:text-black">
           View Details
-        </button>
+        </Link>
       </div>
+      
     </div>
   );
 };

@@ -38,7 +38,6 @@ const UpdateFood = () => {
       }
       axios.put(`http://localhost:3000/foods/${_id}`, upateFoods)
       .then( res => {
-        console.log(res.data);
           if(res.data){
               Swal.fire({
                   position: "top-center",
