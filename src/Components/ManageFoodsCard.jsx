@@ -4,10 +4,14 @@ import 'aos/dist/aos.css';
 import axios from "axios";
 AOS.init();
 
-const ManageFoodsCard = ({food}) => {
+const ManageFoodsCard = ({food,refetch}) => {
     const {_id,foodName,donatorName,donatorEmail,quantity,pickupLocation,} = food
     const handleDelete = (_id) => {
-        axios.delete()
+        axios.delete(`http://localhost:3000/foods/${_id}`, _id)
+        .then(res => {
+            console.log(res.data)
+            refetch()
+        })
     };
     return (
         <tr className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
