@@ -25,7 +25,7 @@ const ManageFoodsCard = ({food,refetch}) => {
           }) 
           axios.delete(`http://localhost:3000/foods/${_id}`, _id)
           .then(res => {
-              console.log(res.data)
+              
               refetch()
           })
         }
@@ -56,7 +56,7 @@ const ManageFoodsCard = ({food,refetch}) => {
           
         </td>
         <td className="p-3">
-        <Link to={`/update/${_id}`} className="btn bg-success text-white">Update</Link>
+        <Link to={`/updateFood/${_id}`} className="btn bg-success text-white">Update</Link>
         </td>
       </tr>
     );
