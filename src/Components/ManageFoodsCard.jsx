@@ -2,16 +2,36 @@ import { Link } from "react-router-dom";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import axios from "axios";
+import Swal from "sweetalert2";
 AOS.init();
 
 const ManageFoodsCard = ({food,refetch}) => {
     const {_id,foodName,donatorName,donatorEmail,quantity,pickupLocation,} = food
     const handleDelete = (_id) => {
-        axios.delete(`http://localhost:3000/foods/${_id}`, _id)
-        .then(res => {
-            console.log(res.data)
-            refetch()
-        })
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your food has been deleted.",
+            icon: "success"
+          }) 
+          axios.delete(`http://localhost:3000/foods/${_id}`, _id)
+          .then(res => {
+              console.log(res.data)
+              refetch()
+          })
+        }
+       
+      });
+       
     };
     return (
         <tr className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">

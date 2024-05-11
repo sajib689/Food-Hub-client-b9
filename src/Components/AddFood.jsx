@@ -128,7 +128,7 @@ const AddFood = () => {
               <input
                 id="expired_date_time"
                 name="expired_date_time"
-                type="datetime-local"
+                type="date"
                 className="w-full h-10 rounded-md border-gray-300 focus:border-violet-600 focus:ring focus:ring-violet-600 focus:ring-opacity-50 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-700"
               />
             </div>
