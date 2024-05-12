@@ -9,7 +9,7 @@ const ManageFoods = () => {
   const { isPending, data, refetch } = useQuery({
     queryKey: ["data"],
     queryFn: () =>
-      fetch(`http://localhost:3000/foods?email=${user?.email}`).then((res) =>
+      fetch(`http://localhost:3000/foods?donatorEmail=${user?.email}`).then((res) =>
         res.json()
       ),
   });

@@ -19,6 +19,7 @@ const AddFood = () => {
     const donatorImage = user?.photoURL
     const donatorName = user?.displayName
     const donatorEmail = user?.email
+    const status = 'available'
     const foods = {
         donatorImage,
         donatorName,
@@ -29,7 +30,7 @@ const AddFood = () => {
         pickupLocation,
         expiredDateTime,
         additionalNotes,
-        
+        status
     }
     axios.post('http://localhost:3000/foods', foods)
     .then( res => {

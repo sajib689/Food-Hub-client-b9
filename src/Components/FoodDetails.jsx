@@ -1,15 +1,17 @@
 import { useLoaderData } from "react-router-dom";
 import Modal from "react-modal";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import axios from "axios";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const FoodDetails = () => {
   const food = useLoaderData();
-
+  const {user} = useContext(AuthContext)
   const {
     _id,
     foodImage,
     foodName,
-    donatorImage,
     additionalNotes,
     donatorName,
     pickupLocation,
@@ -48,17 +50,33 @@ const FoodDetails = () => {
     const form = e.target
     const requestDate = form.requestDate.value 
     const foodName = form.foodName.value
+    const requestUserEmail = user?.email
     const pickupLocation = form.pickupLocation.value
     const expiredDateTime = form.expiredDateTime.value
     const donatorName = form.donatorName.value
+    const donatorEmail = form.donatorEmail.value
+    if(requestUserEmail === donatorEmail) return alert('You have no permisson for this action')
     const request = {
       foodName,
       donatorName,
+      donatorEmail,
+      requestUserEmail,
       requestDate,
       pickupLocation,
       expiredDateTime
     }
-    console.log(request)
+    axios.post('http://localhost:3000/request', request)
+    .then( res => {
+      if(res.data) {
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Your Food Request Send",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    })
   }
   return (
     <section className="bg-white dark:bg-gray-900">
@@ -126,6 +144,7 @@ const FoodDetails = () => {
                     <label className="mb-2 input input-bordered flex items-center gap-2">
                       Donator Email:
                       <input
+                      name="donatorEmail"
                         value={donatorEmail}
                         type="text"
                         className="grow"
