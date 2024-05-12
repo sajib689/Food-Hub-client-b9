@@ -15,7 +15,6 @@ const FoodRequest = () => {
   });
 
   if (isPending) return <Loader />;
-  console.log(data);
   return (
     <div className="container max-w-6xl p-2 mx-auto sm:p-4 dark:text-gray-800">
       <h2 className="mb-4 text-2xl font-semibold leading-tight">

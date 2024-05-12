@@ -18,6 +18,7 @@ const FoodDetails = () => {
     donatorEmail,
     expiredDateTime,
     quantity,
+    status,
   } = food;
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -55,6 +56,7 @@ const FoodDetails = () => {
     const expiredDateTime = form.expiredDateTime.value
     const donatorName = form.donatorName.value
     const donatorEmail = form.donatorEmail.value
+    const status = form.status.value
     if(requestUserEmail === donatorEmail) return alert('You have no permisson for this action')
     const request = {
       foodName,
@@ -65,6 +67,13 @@ const FoodDetails = () => {
       pickupLocation,
       expiredDateTime
     }
+     const updateStatus = {
+      status: 'not-available'
+    }
+    axios.patch(`http://localhost:3000/foods/${_id}`,updateStatus)
+    .then(res => {
+      console.log(res.data)
+    })
     axios.post('http://localhost:3000/request', request)
     .then( res => {
       if(res.data) {
@@ -140,6 +149,10 @@ const FoodDetails = () => {
                     <label className="mb-2 input input-bordered flex items-center gap-2">
                       Food ID:
                       <input value={_id} type="text" className="grow" />
+                    </label>
+                    <label className="hidden mb-2 input input-bordered flex items-center gap-2">
+                      Food ID:
+                      <input name="status" value={status} type="text" className="grow" />
                     </label>
                     <label className="mb-2 input input-bordered flex items-center gap-2">
                       Donator Email:
