@@ -1,20 +1,20 @@
-import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
+
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import Loader from "./Loader";
 import FoodRequestCard from "./FoodRequestCard";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const FoodRequest = () => {
   const { user } = useContext(AuthContext);
-  const { isPending, data } = useQuery({
-    queryKey: ["data"],
-    queryFn: () =>
-      fetch(
-        `http://localhost:3000/request?requestUserEmail=${user?.email}`
-      ).then((res) => res.json()),
-  });
+  const [data, setData] = useState([])
+  const axiosSecure = useAxiosSecure()
 
-  if (isPending) return <Loader />;
+  useEffect( () => {
+    axiosSecure.get(`/request?requestUserEmail=${user?.email}`)
+    .then(res => {
+      setData(res.data)
+    })
+  },[user?.email,axiosSecure])
   return (
     <div className="container max-w-6xl p-2 mx-auto sm:p-4 dark:text-gray-800">
       <h2 className="mb-4 text-2xl font-semibold leading-tight">
@@ -39,7 +39,7 @@ const FoodRequest = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((food) => (
+            {data?.map((food) => (
               <FoodRequestCard key={food._id} food={food}></FoodRequestCard>
             ))}
           </tbody>
