@@ -1,17 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import FeaturedCard from "./FeaturedCard";
+import Loader from './Loader';
 
 
 const AvailableFood = () => {
     const { isPending, data } = useQuery({
         queryKey: ['data'],
         queryFn: () =>
-          fetch('http://localhost:3000/foods').then((res) =>
+          fetch('http://localhost:3000/foods')
+        .then((res) =>
             res.json(),
           ),
       })
       
-      if (isPending) return 'Loading...'
+      if (isPending) return <Loader/>
     
 
     const foodsFilter = data.filter(food => food.status === 'available');

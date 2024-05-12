@@ -47,13 +47,13 @@ const Navbar = () => {
       <div className="container px-6 py-4 mx-auto">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
-            <a href="#">
+            <Link to="/">
               <img
-                className="w-auto h-6 sm:h-7"
-                src="https://i.pinimg.com/736x/81/8d/f1/818df10f7a2fa98b1705ae343802cd18.jpg"
+                className="w-auto h-24 sm:h-[60px]"
+                src="https://i.ibb.co/y5L1jPH/logo-removebg-preview.png"
                 alt=""
               />
-            </a>
+            </Link>
 
             {/* Mobile menu button */}
             <div className="flex lg:hidden">

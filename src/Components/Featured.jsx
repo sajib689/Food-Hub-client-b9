@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import FeaturedCard from "./FeaturedCard";
 import Loader from './Loader';
 
+import { motion } from "framer-motion"
 
 const Featured = () => {
     const { isPending, data } = useQuery({
@@ -36,7 +37,21 @@ const Featured = () => {
         </div>
         <div className="max-w-6xl mb-24 px-10 py-10 mx-auto grid grid-cols lg:grid-cols-3 md:grid-cols-3 gap-6">
             {
-                foods.slice(0,6).map(food => <FeaturedCard key={food._id} food={food}></FeaturedCard>)
+               foods.slice(0, 6).map(food => (
+                <motion.div
+                  key={food._id}
+                  initial={{ scale: 0 }}
+                  animate={{ rotate: 0, scale: 1 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 20
+                  }}
+                >
+                  <FeaturedCard food={food} />
+                </motion.div>
+              ))
+              
             }
         </div>
       </div>

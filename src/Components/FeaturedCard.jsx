@@ -22,7 +22,7 @@ const FeaturedCard = ({ food }) => {
           {additionalNotes}
         </p>
       </div>
-
+      
       <img
         className="object-cover w-full h-48 mt-2"
         src={foodImage}
