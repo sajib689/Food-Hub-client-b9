@@ -9,6 +9,7 @@ import ManageFoods from "../Components/ManageFoods";
 import UpdateFood from "../Components/UpdateFood";
 import FoodDetails from "../Components/FoodDetails";
 import FoodRequest from "../Components/FoodRequest";
+import AvailableFood from "../Components/AvailableFood";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
         {
             path: "/foodrequest",
             element: <FoodRequest/>
+        },
+        {
+            path: "/allfood",
+            element: <AvailableFood/>
         },
     ]
   },
