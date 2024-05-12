@@ -44,7 +44,21 @@ const FoodDetails = () => {
   const options = { year: "numeric", month: "long", day: "numeric" };
   const today = new Date().toLocaleDateString(undefined, options);
   const handleFoodRequest = e => {
-    console.log(e, 'click')
+    e.preventDefault()
+    const form = e.target
+    const requestDate = form.requestDate.value 
+    const foodName = form.foodName.value
+    const pickupLocation = form.pickupLocation.value
+    const expiredDateTime = form.expiredDateTime.value
+    const donatorName = form.donatorName.value
+    const request = {
+      foodName,
+      donatorName,
+      requestDate,
+      pickupLocation,
+      expiredDateTime
+    }
+    console.log(request)
   }
   return (
     <section className="bg-white dark:bg-gray-900">
@@ -100,10 +114,10 @@ const FoodDetails = () => {
                     </svg>
                   </button>
                   <img className="rounded" src={foodImage} alt="" />
-                  <div>
+                  <form onSubmit={handleFoodRequest}>
                     <label className="mb-2 input input-bordered flex items-center gap-2">
                       Food Name:
-                      <input value={foodName} type="text" className="grow" />
+                      <input name="foodName" value={foodName} type="text" className="grow" />
                     </label>
                     <label className="mb-2 input input-bordered flex items-center gap-2">
                       Food ID:
@@ -119,15 +133,16 @@ const FoodDetails = () => {
                     </label>
                     <label className="mb-2 input input-bordered flex items-center gap-2">
                       Donator Name:
-                      <input value={donatorName} type="text" className="grow" />
+                      <input name="donatorName" value={donatorName} type="text" className="grow" />
                     </label>
                     <label className="mb-2 input input-bordered flex items-center gap-2">
                       Request Date:
-                      <input value={today} type="text" className="grow" />
+                      <input name="requestDate" value={today} type="text" className="grow" />
                     </label>
                     <label className="mb-2 input input-bordered flex items-center gap-2">
                       Pickup Location:
                       <input
+                      name="pickupLocation"
                         value={pickupLocation}
                         type="text"
                         className="grow"
@@ -136,6 +151,7 @@ const FoodDetails = () => {
                     <label className="mb-2 input input-bordered flex items-center gap-2">
                       Expire Date:
                       <input
+                      name="expiredDateTime"
                         value={expiredDateTime}
                         type="text"
                         className="grow"
@@ -149,11 +165,12 @@ const FoodDetails = () => {
                         className="grow"
                       />
                     </label>
-                  </div>
-
-                  <button onClick={ handleFoodRequest} className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                    <button className="w-full mt-2 px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
                     Request Now
                   </button>
+                  </form>
+
+                 
                 </div>
               </Modal>
             </div>
