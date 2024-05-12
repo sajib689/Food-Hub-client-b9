@@ -57,7 +57,14 @@ const FoodDetails = () => {
     const donatorName = form.donatorName.value
     const donatorEmail = form.donatorEmail.value
     const status = form.status.value
-    if(requestUserEmail === donatorEmail) return alert('You have no permisson for this action')
+    const additionalNotes = form.additionalNotes.value
+    if(requestUserEmail === donatorEmail){
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You are not allowed to request",
+      });
+    }
     const request = {
       foodName,
       donatorName,
@@ -65,7 +72,8 @@ const FoodDetails = () => {
       requestUserEmail,
       requestDate,
       pickupLocation,
-      expiredDateTime
+      expiredDateTime,
+      additionalNotes
     }
      const updateStatus = {
       status: 'not-available'
@@ -192,6 +200,7 @@ const FoodDetails = () => {
                     <label className="mb-2 input input-bordered flex items-center gap-2">
                       Additional Notes:
                       <input
+                      name="additionalNotes"
                         defaultValue={additionalNotes}
                         type="text"
                         className="grow"
