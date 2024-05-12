@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import AOS from "aos";
@@ -19,10 +19,12 @@ const Login = () => {
     setEye(false);
   };
   const navigate = useNavigate();
+  const location = useLocation();
   const handleGoogle = () => {
     google()
       .then((result) => {
         const user = result.user;
+        navigate(location?.state ? location.state : '/')
       })
       .catch((err) => {
         console.error(err);
@@ -33,6 +35,7 @@ const Login = () => {
     gitHub()
       .then((result) => {
         const user = result.user;
+        navigate(location?.state ? location.state : '/')
       })
       .catch((err) => {
         console.error(err);
@@ -57,7 +60,7 @@ const Login = () => {
           });
         }
         form.reset();
-        navigate("/");
+        navigate(location?.state ? location.state : '/')
       })
       .catch((err) => {
         if (err) {

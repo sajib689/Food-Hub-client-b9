@@ -39,8 +39,7 @@ const AuthProvider = ({children}) => {
         setUser(currentUser)
         setLoading(false)
         if(currentUser){
-            axios.post('http://localhost:3000/jwt',{
-                loggedUser,
+            axios.post('http://localhost:3000/jwt',loggedUser,{
                 withCredentials: true,
             })
             .then(res => {
