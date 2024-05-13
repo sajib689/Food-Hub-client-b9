@@ -6,6 +6,7 @@ import "aos/dist/aos.css";
 AOS.init();
 import { motion } from "framer-motion";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Featured = () => {
   const axiosSecure = useAxiosSecure();
@@ -51,7 +52,7 @@ const Featured = () => {
       </div>
       <div
         data-aos="fade-up-right"
-        className="max-w-6xl mb-24 px-10 py-10 mx-auto grid grid-cols lg:grid-cols-3 md:grid-cols-3 gap-6"
+        className="max-w-6xl px-10 py-10 mx-auto grid grid-cols lg:grid-cols-3 md:grid-cols-3 gap-6"
       >
         {foods.slice(0, 6).map((food) => (
           <motion.div
@@ -67,6 +68,11 @@ const Featured = () => {
             <FeaturedCard food={food} />
           </motion.div>
         ))}
+      </div>
+      <div className="flex justify-center items-center mb-24 ">
+      <Link to='/allfood' className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+        Show All
+      </Link>
       </div>
     </div>
   );
