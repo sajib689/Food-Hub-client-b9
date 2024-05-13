@@ -5,6 +5,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import ManageFoodsCard from "./ManageFoodsCard";
 import useAxiosSecure from './../Hooks/useAxiosSecure';
 import { Helmet } from "react-helmet";
+import Nodata from "./Nodata";
 
 const ManageFoods = () => {
   const { user,loading } = useContext(AuthContext);
@@ -28,6 +29,7 @@ const ManageFoods = () => {
   if(loading){
     return <Loader />;
   }
+  if(data.length === 0) return <Nodata />
   return (
     <div>
        <Helmet>
