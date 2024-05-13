@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import FeaturedCard from "./FeaturedCard";
 import Loader from "./Loader";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { RiLayoutGridFill } from "react-icons/ri";
 import { Helmet } from "react-helmet";
