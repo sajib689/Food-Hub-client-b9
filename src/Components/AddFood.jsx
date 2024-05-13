@@ -3,11 +3,12 @@ import Swal from "sweetalert2";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { AuthContext } from "../Provider/AuthProvider";
-import axios from "axios";
 import { Helmet } from "react-helmet";
+import useAxiosSecure from './../Hooks/useAxiosSecure';
 AOS.init();
 const AddFood = () => {
   const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure()
   const handlePostSpot = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -33,7 +34,7 @@ const AddFood = () => {
         additionalNotes,
         status
     }
-    axios.post('http://localhost:3000/foods', foods)
+    axiosSecure.post(`/foods`, foods)
     .then( res => {
       
         if(res.data){
