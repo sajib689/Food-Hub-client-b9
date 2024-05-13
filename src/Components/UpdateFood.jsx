@@ -6,9 +6,11 @@ import axios from "axios";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 AOS.init();
 const UpdateFood = () => {
   const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure()
   const updateFood = useLoaderData();
   const {
     _id,
@@ -36,7 +38,8 @@ const UpdateFood = () => {
       expiredDateTime,
       additionalNotes,
     };
-    axios.put(`http://localhost:3000/foods/${_id}`, upateFoods).then((res) => {
+    axiosSecure.put(`/foods/${_id}`, upateFoods)
+    .then((res) => {
       if (res.data) {
         Swal.fire({
           position: "top-center",
