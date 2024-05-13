@@ -6,7 +6,9 @@ import ManageFoodsCard from "./ManageFoodsCard";
 import useAxiosSecure from './../Hooks/useAxiosSecure';
 import { Helmet } from "react-helmet";
 import Nodata from "./Nodata";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 const ManageFoods = () => {
   const { user,loading } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure()
@@ -35,7 +37,7 @@ const ManageFoods = () => {
        <Helmet>
         <title>Food Hub | Manage Food</title>
       </Helmet>
-      <div className="container max-w-6xl p-2 mx-auto sm:p-4 dark:text-gray-800">
+      <div data-aos="fade-right" className="container max-w-6xl p-2 mx-auto sm:p-4 dark:text-gray-800">
       <h2 className="mb-4 text-2xl font-semibold leading-tight">My Food List</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full text-xs">
