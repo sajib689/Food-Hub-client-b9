@@ -34,11 +34,11 @@ const FeaturedCard = ({ food }) => {
         <h1 className="font-[400] m-1">Expired Date: {expiredDateTime}</h1>
       </div>
       <div className="flex items-center justify-between px-4 py-2 bg-blue-600">
-        <div className="avatar">
+        <div className="avatar flex justify-center items-center">
           <div className="w-12">
             <img className="rounded-full" src={donatorImage} />
           </div>
-          <h1 className="text-white">{donatorName}</h1>
+          <h1 className="text-white ms-1">{donatorName}</h1>
         </div>
         <Link to={`/foodDetails/${_id}`} className="px-2 py-1 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-blue-500 rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none hover:text-black">
           View Details
