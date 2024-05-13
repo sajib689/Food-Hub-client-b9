@@ -1,10 +1,15 @@
 import React from "react";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 class TeamSection extends React.Component {
   render() {
     return (
       <section className="py-6 dark:bg-gray-100 dark:text-gray-800">
-        <div className="container flex flex-col items-center justify-center p-4 mx-auto space-y-8 sm:p-10">
+        <div
+          data-aos="zoom-in-right"
+          className="container flex flex-col items-center justify-center p-4 mx-auto space-y-8 sm:p-10"
+        >
           <h1 className="text-4xl font-bold leading-none text-center sm:text-5xl ">
             Our <span className="text-blue-500">Team</span>
           </h1>
@@ -13,7 +18,12 @@ class TeamSection extends React.Component {
             Reduction Platform. Their passion and expertise drive our mission
             forward!
           </p>
-          <div className="flex flex-row flex-wrap-reverse justify-center">
+          <div
+            data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="1500"
+            className="flex flex-row flex-wrap-reverse justify-center"
+          >
             <TeamMember
               name="Alice Johnson"
               role="Community Outreach Specialist"
