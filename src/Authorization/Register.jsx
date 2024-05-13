@@ -180,7 +180,7 @@ const Register = () => {
             </div>
           )}
         </>
-        <button className="animate__animated animate__bounce block w-full p-3 text-center rounded-sm dark:text-gray-50 bg-[#fc5a34] text-white">
+        <button className="animate__animated animate__bounce block w-full p-3 text-center rounded-sm dark:text-gray-50 bg-blue-500 text-white">
           Sign up
         </button>
       </form>
