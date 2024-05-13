@@ -3,7 +3,7 @@ import FeaturedCard from "./FeaturedCard";
 import Loader from "./Loader";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiLayoutGridFill } from "react-icons/ri";
 import { Helmet } from "react-helmet";
 import Nodata from "./Nodata";
@@ -13,6 +13,7 @@ const AvailableFood = () => {
   const [query, setQuery] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [layout, setLayout] = useState(3);
+  const [storeFood, setStoreFood] = useState([]);
   const { isPending, data } = useQuery({
     queryKey: ["data"],
     queryFn: async () => {
@@ -20,12 +21,18 @@ const AvailableFood = () => {
         const res = await axiosSecure.get(`/foods`);
         return res.data;
       } catch (err) {
-        if (err) {
-          console.log(err);
-        }
+        console.log(err);
       }
     },
   });
+
+  useEffect(() => {
+    if (data) {
+      const foodsFilter = data.filter((food) => food.status === "available");
+      setStoreFood(foodsFilter);
+    }
+  }, [data]);
+
   const handleSearch = async () => {
     try {
       const res = await axiosSecure.get(`/foods?foodName=${query}`);
@@ -34,16 +41,30 @@ const AvailableFood = () => {
       console.log(err);
     }
   };
+
   const handleChangeLayout = () => {
     setLayout(2);
   };
+
+  const sortData = (data, d) => {
+    const sortDate = [...data].sort((a, b) => {
+      const dateA = new Date(a[d]);
+      const dateB = new Date(b[d]);
+      return dateA - dateB;
+    });
+    return sortDate;
+  };
+
+  const handleSortDate = (e) => {
+    const selectData = e.target.value;
+    const foodSort = sortData(storeFood, selectData);
+    setStoreFood(foodSort);
+  };
+
   if (isPending) return <Loader />;
 
-  const foodsFilter = data.filter((food) => food.status === "available");
-  const handleSortDate = () => {
-    
-  }
-  if (foodsFilter.length === 0) return <Nodata />;
+  if (!data || storeFood.length === 0) return <Nodata />;
+
   return (
     <div>
       <Helmet>
@@ -81,11 +102,11 @@ const AvailableFood = () => {
         </div>
         <div className="me-24 flex justify-center items-center">
          <div className="me-3">
-         <select onClick={handleSortDate} className="select select-info w-full max-w-xs">
+         <select onChange={handleSortDate} className="select select-info w-full max-w-xs">
             <option disabled selected>
               Select One
             </option>
-            <option> Food Expire Date </option>
+            <option value='expiredDateTime'> Food Expire Date </option>
           </select>
 
          </div>
@@ -106,7 +127,7 @@ const AvailableFood = () => {
           ? searchResult.map((food) => (
               <FeaturedCard key={food._id} food={food}></FeaturedCard>
             ))
-          : foodsFilter.map((food) => (
+          : storeFood.map((food) => (
               <FeaturedCard key={food._id} food={food}></FeaturedCard>
             ))}
       </div>
