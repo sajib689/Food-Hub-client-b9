@@ -13,6 +13,7 @@ import AvailableFood from "../Components/AvailableFood";
 import PrivateRoute from './PrivateRoute';
 import PrivacyPolicy from "../Components/PrivacyPolicy";
 import About from './../Components/About';
+import DonarRequest from "../Components/DonarRequest";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
         {
             path: "/about",
             element: <About/>
+        },
+        {
+            path: "/foodrequestdonar",
+            element: <DonarRequest/>
         },
     ]
   },
