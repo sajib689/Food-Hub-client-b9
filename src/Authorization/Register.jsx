@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { updateProfile } from "firebase/auth";
@@ -14,6 +14,7 @@ const Register = () => {
   const { register, google, gitHub } = useContext(AuthContext);
   const [eye, setEye] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation()
   const handleEye = () => {
     setEye(true);
   };
@@ -57,7 +58,7 @@ const Register = () => {
           });
         }
         form.reset();
-        navigate("/");
+        navigate(location.state ? location.state : '/');
       })
       .catch((err) => {
         if (err) {
@@ -74,7 +75,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         if(user) {
-            navigate("/");
+          navigate(location.state ? location.state : '/');
         }
       })
       .catch((err) => {
@@ -87,19 +88,19 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         if(user) {
-            navigate("/");
+            navigate(location.state ? location.state : '/');
         }
       })
       .catch((err) => {
         console.error(err);
       });
-    navigate("/");
+      navigate(location.state ? location.state : '/');
   };
   return (
    <>
    <Toaster />
    <Helmet>
-        <title>TouristaTrek | Register</title>
+        <title>Food Hub | Register</title>
       </Helmet>
    <div
       data-aos="fade-right"

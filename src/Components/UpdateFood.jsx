@@ -5,57 +5,63 @@ import "aos/dist/aos.css";
 import axios from "axios";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useLoaderData } from "react-router-dom";
+import { Helmet } from "react-helmet";
 AOS.init();
 const UpdateFood = () => {
-    const { user } = useContext(AuthContext);
-    const updateFood = useLoaderData()
-    const {
-        _id,
-        foodImage,
-        foodName,
-        quantity,
-        pickupLocation,
-        expiredDateTime,
-        additionalNotes,
-        } = updateFood
-    const handleUpdateFood = (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const foodImage = form.food_image.value 
-      const foodName = form.food_name.value
-      const quantity = form.quantity.value
-      const pickupLocation = form.pickup_location.value
-      const expiredDateTime = form.expired_date_time.value;
-      const additionalNotes = form.additional_notes.value 
-      const upateFoods = {
-          foodImage,
-          foodName,
-          quantity,
-          pickupLocation,
-          expiredDateTime,
-          additionalNotes,
-          
-      }
-      axios.put(`http://localhost:3000/foods/${_id}`, upateFoods)
-      .then( res => {
-          if(res.data){
-              Swal.fire({
-                  position: "top-center",
-                  icon: "success",
-                  title: "Food Update Success",
-                  showConfirmButton: false,
-                  timer: 1500
-                });
-                form.reset()
-          }
-      })
+  const { user } = useContext(AuthContext);
+  const updateFood = useLoaderData();
+  const {
+    _id,
+    foodImage,
+    foodName,
+    quantity,
+    pickupLocation,
+    expiredDateTime,
+    additionalNotes,
+  } = updateFood;
+  const handleUpdateFood = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const foodImage = form.food_image.value;
+    const foodName = form.food_name.value;
+    const quantity = form.quantity.value;
+    const pickupLocation = form.pickup_location.value;
+    const expiredDateTime = form.expired_date_time.value;
+    const additionalNotes = form.additional_notes.value;
+    const upateFoods = {
+      foodImage,
+      foodName,
+      quantity,
+      pickupLocation,
+      expiredDateTime,
+      additionalNotes,
     };
-    return (
-        <section
+    axios.put(`http://localhost:3000/foods/${_id}`, upateFoods).then((res) => {
+      if (res.data) {
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Food Update Success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        form.reset();
+      }
+    });
+  };
+  return (
+    <div>
+      <Helmet>
+        <title>Food Hub | Update Food</title>
+      </Helmet>
+      <section
         data-aos="fade-down-right"
         className="max-w-6xl mx-auto p-6 dark:bg-gray-100 dark:text-gray-900"
       >
-        <form onSubmit={handleUpdateFood} className="container mx-auto space-y-8">
+        <form
+          onSubmit={handleUpdateFood}
+          className="container mx-auto space-y-8"
+        >
           <fieldset className="p-6 rounded-lg shadow-md">
             <legend className="text-lg font-medium text-gray-800 dark:text-gray-200">
               Food Information
@@ -69,7 +75,7 @@ const UpdateFood = () => {
                   Food Image
                 </label>
                 <input
-                defaultValue={foodImage}
+                  defaultValue={foodImage}
                   id="food_image"
                   name="food_image"
                   type="text"
@@ -85,7 +91,7 @@ const UpdateFood = () => {
                   Food Name
                 </label>
                 <input
-                defaultValue={foodName}
+                  defaultValue={foodName}
                   id="food_name"
                   name="food_name"
                   type="text"
@@ -101,7 +107,7 @@ const UpdateFood = () => {
                   Quantity
                 </label>
                 <input
-                defaultValue={quantity}
+                  defaultValue={quantity}
                   id="quantity"
                   name="quantity"
                   type="text"
@@ -117,7 +123,7 @@ const UpdateFood = () => {
                   Pickup Location
                 </label>
                 <input
-                defaultValue={pickupLocation}
+                  defaultValue={pickupLocation}
                   id="pickup_location"
                   name="pickup_location"
                   type="text"
@@ -133,7 +139,7 @@ const UpdateFood = () => {
                   Expired Date and Time
                 </label>
                 <input
-                defaultValue={expiredDateTime}
+                  defaultValue={expiredDateTime}
                   id="expired_date_time"
                   name="expired_date_time"
                   type="date"
@@ -148,7 +154,7 @@ const UpdateFood = () => {
                   Additional Notes
                 </label>
                 <textarea
-                defaultValue={additionalNotes}
+                  defaultValue={additionalNotes}
                   id="additional_notes"
                   name="additional_notes"
                   placeholder="Additional Notes"
@@ -167,7 +173,8 @@ const UpdateFood = () => {
           </fieldset>
         </form>
       </section>
-    );
+    </div>
+  );
 };
 
 export default UpdateFood;

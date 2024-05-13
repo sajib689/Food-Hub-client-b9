@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import ManageFoodsCard from "./ManageFoodsCard";
 import useAxiosSecure from './../Hooks/useAxiosSecure';
+import { Helmet } from "react-helmet";
 
 const ManageFoods = () => {
   const { user,loading } = useContext(AuthContext);
@@ -28,7 +29,11 @@ const ManageFoods = () => {
     return <Loader />;
   }
   return (
-    <div className="container max-w-6xl p-2 mx-auto sm:p-4 dark:text-gray-800">
+    <div>
+       <Helmet>
+        <title>Food Hub | Manage Food</title>
+      </Helmet>
+      <div className="container max-w-6xl p-2 mx-auto sm:p-4 dark:text-gray-800">
       <h2 className="mb-4 text-2xl font-semibold leading-tight">My Food List</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full text-xs">
@@ -63,6 +68,8 @@ const ManageFoods = () => {
         </table>
       </div>
     </div>
+    </div>
+   
   );
 };
 

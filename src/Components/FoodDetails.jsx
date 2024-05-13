@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const FoodDetails = () => {
   const food = useLoaderData();
@@ -96,7 +97,11 @@ const FoodDetails = () => {
     })
   }
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <div>
+      <Helmet>
+        <title>Food Hub | Food Details</title>
+      </Helmet>
+      <section className="bg-white dark:bg-gray-900">
       <div className="container px-6 py-10 mx-auto">
         <div className="lg:-mx-6 lg:flex lg:items-center">
           <img
@@ -219,6 +224,7 @@ const FoodDetails = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

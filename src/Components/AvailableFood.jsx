@@ -5,6 +5,7 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import axios from "axios";
 import { useState } from "react";
 import { RiLayoutGridFill } from "react-icons/ri";
+import { Helmet } from "react-helmet";
 
 const AvailableFood = () => {
   const axiosSecure = useAxiosSecure();
@@ -41,6 +42,9 @@ const AvailableFood = () => {
 
   return (
     <div>
+       <Helmet>
+        <title>Food Hub | Available Food</title>
+      </Helmet>
       <div className="flex justify-between items-center">
       <div className="container max-w-6xl mb-3  px-6 py-10 mx-auto">
         <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
@@ -63,7 +67,7 @@ const AvailableFood = () => {
         {/* end searchFiled */}
       </div>
       <div className="me-24">
-       <button onClick={handleChangeLayout} className="text-[2rem]"><RiLayoutGridFill /></button>
+       <button onClick={handleChangeLayout} className="text-[2rem] hidden lg:block md:block"><RiLayoutGridFill /></button>
       </div>
       </div>
       <div className={`max-w-6xl mb-24 px-10 py-10 mx-auto grid grid-cols lg:grid-cols-${layout} md:grid-cols-${layout} gap-6`}>

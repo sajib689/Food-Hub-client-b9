@@ -4,6 +4,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 AOS.init();
 const AddFood = () => {
   const { user } = useContext(AuthContext);
@@ -49,7 +50,11 @@ const AddFood = () => {
   };
 
   return (
-    <section
+    <div>
+       <Helmet>
+        <title>Food Hub | Add Food</title>
+      </Helmet>
+      <section
       data-aos="fade-down-right"
       className="max-w-6xl mx-auto p-6 dark:bg-gray-100 dark:text-gray-900"
     >
@@ -159,6 +164,8 @@ const AddFood = () => {
         </fieldset>
       </form>
     </section>
+    </div>
+   
   );
 };
 
