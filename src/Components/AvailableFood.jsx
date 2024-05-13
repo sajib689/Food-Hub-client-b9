@@ -4,6 +4,7 @@ import Loader from "./Loader";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import axios from "axios";
 import { useState } from "react";
+import { RiLayoutGridFill } from "react-icons/ri";
 
 const AvailableFood = () => {
   const axiosSecure = useAxiosSecure();
@@ -31,12 +32,16 @@ const AvailableFood = () => {
     console.log(err);
    }
   }
+  const handleChangeLayout = () => {
+    setLayout(2)
+  }
   if (isPending) return <Loader />;
 
   const foodsFilter = data.filter((food) => food.status === "available");
 
   return (
     <div>
+      <div className="flex justify-between items-center">
       <div className="container max-w-6xl mb-3  px-6 py-10 mx-auto">
         <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
           explore our Available Foods
@@ -57,7 +62,11 @@ const AvailableFood = () => {
         </div>
         {/* end searchFiled */}
       </div>
-      <div className="max-w-6xl mb-24 px-10 py-10 mx-auto grid grid-cols lg:grid-cols-3 md:grid-cols-3 gap-6">
+      <div className="me-24">
+       <button onClick={handleChangeLayout} className="text-[2rem]"><RiLayoutGridFill /></button>
+      </div>
+      </div>
+      <div className={`max-w-6xl mb-24 px-10 py-10 mx-auto grid grid-cols lg:grid-cols-${layout} md:grid-cols-${layout} gap-6`}>
       {searchResult.length > 0 ? (
           searchResult.map((food) => (
             <FeaturedCard key={food._id} food={food}></FeaturedCard>
