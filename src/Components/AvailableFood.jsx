@@ -6,6 +6,7 @@ import axios from "axios";
 import { useState } from "react";
 import { RiLayoutGridFill } from "react-icons/ri";
 import { Helmet } from "react-helmet";
+import Nodata from './Nodata';
 
 const AvailableFood = () => {
   const axiosSecure = useAxiosSecure();
@@ -39,7 +40,7 @@ const AvailableFood = () => {
   if (isPending) return <Loader />;
 
   const foodsFilter = data.filter((food) => food.status === "available");
-
+  if(foodsFilter.length === 0) return <Nodata/>
   return (
     <div>
        <Helmet>
