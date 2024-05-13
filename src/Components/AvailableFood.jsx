@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 import { RiLayoutGridFill } from "react-icons/ri";
 import { Helmet } from "react-helmet";
 import Nodata from "./Nodata";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 const AvailableFood = () => {
   const axiosSecure = useAxiosSecure();
   const [query, setQuery] = useState("");
@@ -70,7 +72,10 @@ const AvailableFood = () => {
         <title>Food Hub | Available Food</title>
       </Helmet>
       <div className="flex justify-between items-center ">
-        <div className="ms-[110px] container max-w-6xl mb-3  px-6 py-10 mx-auto">
+        <div
+         data-aos="fade-down-right"
+          className="ms-[110px] container max-w-6xl mb-3  px-6 py-10 mx-auto"
+        >
           <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
             explore our Available Foods
           </h1>
@@ -100,26 +105,28 @@ const AvailableFood = () => {
           {/* end searchFiled */}
         </div>
         <div className="me-24 flex justify-center items-center">
-         <div className="me-3">
-         <select onChange={handleSortDate} className="select select-info w-full max-w-xs">
-            <option disabled selected>
-              Select One
-            </option>
-            <option value='expiredDateTime'> Food Expire Date </option>
-          </select>
-
-         </div>
+          <div className="me-3">
+            <select
+              onChange={handleSortDate}
+              className="select select-info w-full max-w-xs"
+            >
+              <option disabled selected>
+                Select One
+              </option>
+              <option value="expiredDateTime"> Food Expire Date </option>
+            </select>
+          </div>
           <div>
-          <button
-            onClick={handleChangeLayout}
-            className="text-[2rem] hidden lg:block md:block"
-          >
-            <RiLayoutGridFill />
-          </button>
+            <button
+              onClick={handleChangeLayout}
+              className="text-[2rem] hidden lg:block md:block"
+            >
+              <RiLayoutGridFill />
+            </button>
           </div>
         </div>
       </div>
-      <div
+      <div 
         className={`max-w-6xl mb-24 px-10 py-10 mx-auto grid grid-cols lg:grid-cols-${layout} md:grid-cols-${layout} gap-6`}
       >
         {searchResult.length > 0
