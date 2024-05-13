@@ -1,16 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 import FeaturedCard from "./FeaturedCard";
 import Loader from './Loader';
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 
 const AvailableFood = () => {
+  const axiosSecure = useAxiosSecure()
     const { isPending, data } = useQuery({
         queryKey: ['data'],
-        queryFn: () =>
-          fetch('http://localhost:3000/foods')
-        .then((res) =>
-            res.json(),
-          ),
+        queryFn: async () =>{
+          try{
+            const res = await axiosSecure.get(`/foods`)
+            return res.data
+          } catch (err){
+            if(err) {
+              console.log(err)
+            }
+          }
+        }
       })
       
       if (isPending) return <Loader/>

@@ -15,7 +15,6 @@ const ManageFoods = () => {
         const response = await axiosSecure.get(`/foods?donatorEmail=${user?.email}`);
         return response.data;
       } catch (error) {
-        // Handle errors here if necessary
         console.error("Error fetching data:", error);
         throw new Error("Failed to fetch data");
       }
