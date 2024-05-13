@@ -3,15 +3,23 @@ import Loader from "./Loader";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import ManageFoodsCard from "./ManageFoodsCard";
+import useAxiosSecure from './../Hooks/useAxiosSecure';
 
 const ManageFoods = () => {
   const { user,loading } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure()
   const { isPending, data, refetch } = useQuery({
     queryKey: ["data"],
-    queryFn: () =>
-      fetch(`http://localhost:3000/foods?donatorEmail=${user?.email}`).then((res) =>
-        res.json()
-      ),
+    queryFn: async () => {
+      try {
+        const response = await axiosSecure.get(`/foods?donatorEmail=${user?.email}`);
+        return response.data;
+      } catch (error) {
+        // Handle errors here if necessary
+        console.error("Error fetching data:", error);
+        throw new Error("Failed to fetch data");
+      }
+    },
   });
   if (isPending) {
     return <Loader />;
