@@ -5,6 +5,7 @@ import "aos/dist/aos.css";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
 import useAxiosSecure from './../Hooks/useAxiosSecure';
+import { axios } from 'axios';
 AOS.init();
 const AddFood = () => {
   const { user } = useContext(AuthContext);
@@ -34,7 +35,7 @@ const AddFood = () => {
         additionalNotes,
         status
     }
-    axiosSecure.post(`/foods`, foods)
+    axios.post(`https://assignment-eleven-servertwo.vercel.app/foods`, foods)
     .then( res => {
       
         if(res.data){
