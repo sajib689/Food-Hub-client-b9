@@ -71,7 +71,7 @@ const AvailableFood = () => {
       <Helmet>
         <title>Food Hub | Available Food</title>
       </Helmet>
-      <div className="flex lg:flex md:flex justify-between items-center ">
+      <div className="flex-col lg:flex md:flex justify-between items-center ">
         <div
          data-aos="fade-down-right"
           className="ms-3 md:ms-[110px] lg:md:ms-[110px] container max-w-6xl mb-3  px-6 py-10 mx-auto"
@@ -104,7 +104,7 @@ const AvailableFood = () => {
           </div>
           {/* end searchFiled */}
         </div>
-        <div className="me-24 flex justify-center items-center">
+        <div className="md:me-24 lg:me-24 flex justify-center items-center">
           <div className="me-3">
             <select
               onChange={handleSortDate}

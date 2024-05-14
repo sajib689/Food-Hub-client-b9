@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 import Nodata from "./Nodata";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
+import Loader from "./Loader";
 AOS.init();
 const FoodRequest = () => {
   const { user } = useContext(AuthContext);
@@ -16,6 +17,7 @@ const FoodRequest = () => {
       setData(res.data);
     });
   }, [user?.email, axiosSecure]);
+  if(data.length === 0) return <Loader/>
   if(data.length === 0) return <Nodata/>
   return (
     <div>
