@@ -1,7 +1,7 @@
 # Food Sharing and Surplus Reduction Platform - Food Hub
 
 Food Hub is a platform dedicated to reducing food waste and promoting food sharing within communities. Our mission is to connect individuals and businesses with surplus food to those in need, thereby minimizing food waste and contributing to a more sustainable future.
-[#website](https://www.foodhub)
+[#website](https://lighthearted-panda-b35522.netlify.app/)
 ## Features
 
 - **Food Listings**: Users can post listings for surplus food available for sharing or donation.
