@@ -4,12 +4,10 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
-import useAxiosSecure from './../Hooks/useAxiosSecure';
-import { axios } from 'axios';
+import axios from "axios";
 AOS.init();
 const AddFood = () => {
   const { user } = useContext(AuthContext);
-  const axiosSecure = useAxiosSecure()
   const handlePostSpot = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -22,7 +20,7 @@ const AddFood = () => {
     const donatorImage = user?.photoURL
     const donatorName = user?.displayName
     const donatorEmail = user?.email
-    const status = 'available'
+    const status = form.available.value
     const foods = {
         donatorImage,
         donatorName,
@@ -107,6 +105,22 @@ const AddFood = () => {
                 id="quantity"
                 name="quantity"
                 type="text"
+                placeholder="Quantity"
+                className="w-full h-10 rounded-md border-gray-300 focus:border-violet-600 focus:ring focus:ring-violet-600 focus:ring-opacity-50 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-700"
+              />
+            </div>
+            <div className="space-y-2 hidden">
+              <label
+                htmlFor="available"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
+                available
+              </label>
+              <input
+                id="available"
+                name="available"
+                type="text"
+                value='available'
                 placeholder="Quantity"
                 className="w-full h-10 rounded-md border-gray-300 focus:border-violet-600 focus:ring focus:ring-violet-600 focus:ring-opacity-50 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-700"
               />
