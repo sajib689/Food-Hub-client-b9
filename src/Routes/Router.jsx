@@ -44,12 +44,12 @@ const router = createBrowserRouter([
         {
             path: "/updateFood/:id",
             element: <PrivateRoute><UpdateFood/></PrivateRoute>,
-            loader: ({params}) =>  fetch(`http://localhost:3000/foods/${params.id}`)
+            loader: ({params}) =>  fetch(`https://assignment-eleven-servertwo.vercel.app/foods/${params.id}`)
         },
         {
             path: "/foodDetails/:id",
             element: <PrivateRoute><FoodDetails/></PrivateRoute>,
-            loader: ({params}) =>  fetch(`http://localhost:3000/foods/${params.id}`)
+            loader: ({params}) =>  fetch(`https://assignment-eleven-servertwo.vercel.app/foods/${params.id}`)
         },
         {
             path: "/foodrequest",

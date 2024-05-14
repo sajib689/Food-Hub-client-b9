@@ -74,7 +74,7 @@ const AvailableFood = () => {
       <div className="flex flex-col lg:flex md:flex justify-between items-center ">
         <div
          data-aos="fade-down-right"
-          className="ms-[110px] container max-w-6xl mb-3  px-6 py-10 mx-auto"
+          className="ms-3 md:ms-[110px] lg:md:ms-[110px] container max-w-6xl mb-3  px-6 py-10 mx-auto"
         >
           <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
             explore our Available Foods
