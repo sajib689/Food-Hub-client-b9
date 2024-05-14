@@ -3,6 +3,7 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/Firebase.init";
 import axios from "axios";
+import useAxiosSecure from './../Hooks/useAxiosSecure';
 
 
 export const AuthContext = createContext(null)
@@ -11,6 +12,7 @@ const gitHubProvider = new GithubAuthProvider()
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const secureAxios = useAxiosSecure()
     const register = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
@@ -39,14 +41,14 @@ const AuthProvider = ({children}) => {
         setUser(currentUser)
         setLoading(false)
         if(currentUser){
-            axios.post('http://localhost:3000/jwt',loggedUser,{
+            secureAxios.post(`/jwt`,loggedUser,{
                 withCredentials: true,
             })
             .then(res => {
                 console.log(res.data);
             })
         } else {
-            axios.post('http://localhost:3000/logout',loggedUser,{
+            secureAxios.post(`/logout`,loggedUser,{
                 withCredentials: true
             })
             .then(res => {
@@ -58,7 +60,7 @@ const AuthProvider = ({children}) => {
         return () => {
             unsubscribe()
         }
-    },[user?.email])
+    },[user?.email,secureAxios])
     const authInfo = {
         user,
         loading,
