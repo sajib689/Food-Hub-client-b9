@@ -51,7 +51,7 @@ const AvailableFood = () => {
     const sortDate = [...data].sort((a, b) => {
       const dateA = new Date(a[d]);
       const dateB = new Date(b[d]);
-      return dateA - dateB;
+      return dateB - dateA;
     });
     return sortDate;
   };
@@ -113,7 +113,7 @@ const AvailableFood = () => {
               <option disabled selected>
                 Select One
               </option>
-              <option value="expiredDateTime"> Food Expire Date </option>
+              <option value="expiredDateTime">Date Available</option>
             </select>
           </div>
           <div>
