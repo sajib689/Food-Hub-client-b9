@@ -17,7 +17,7 @@ const FoodRequest = () => {
       setData(res.data);
     });
   }, [user?.email, axiosSecure]);
-  if(data.length === 0) return <Loader/>
+  // if(data.length === 0) return <Loader/>
   if(data.length === 0) return <Nodata/>
   return (
     <div>
