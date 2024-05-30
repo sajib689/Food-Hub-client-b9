@@ -23,7 +23,7 @@ const Contact = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "We will contact you soon!",
+          title: "We will contact with you soon!",
           showConfirmButton: false,
           timer: 1500
         });
@@ -106,7 +106,8 @@ const Contact = () => {
           </button>
         ) : (
           <button
-            className="disabled w-full p-3 text-sm font-bold tracking-wide uppercase rounded bg-blue-500 text-white dark:bg-blue-500 dark:text-gray-50"
+          disabled
+            className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded bg-blue-500 text-white dark:bg-blue-500 dark:text-gray-50"
           >
             Send Message
           </button>
