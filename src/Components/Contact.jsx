@@ -5,6 +5,7 @@ import { AuthContext } from "./../Provider/AuthProvider";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import axios from "axios";
+import Swal from "sweetalert2";
 AOS.init();
 const Contact = () => {
   const { user } = useContext(AuthContext);
@@ -18,7 +19,15 @@ const Contact = () => {
     const contactInformation = {name,email,message}
     axios.post('https://assignment-eleven-servertwo.vercel.app',contactInformation)
     .then( res => {
-      console.log(res.data)
+      if(res.data) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
     })
   }
   return (
@@ -46,6 +55,7 @@ const Contact = () => {
         />
       </div>
       <form
+      onSubmit={handleContact}
         data-aos="fade-down"
         data-aos-offset="300"
         data-aos-easing="ease-in-sine"
@@ -90,14 +100,12 @@ const Contact = () => {
         </div>
         {user ? (
           <button
-            type="submit"
             className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded bg-blue-500 text-white dark:bg-blue-500 dark:text-gray-50"
           >
             Send Message
           </button>
         ) : (
           <button
-            type="submit"
             className="disabled w-full p-3 text-sm font-bold tracking-wide uppercase rounded bg-blue-500 text-white dark:bg-blue-500 dark:text-gray-50"
           >
             Send Message
