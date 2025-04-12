@@ -33,7 +33,7 @@ const AddFood = () => {
         additionalNotes,
         status
     }
-    axios.post(`https://assignment-eleven-servertwo.vercel.app/foods`, foods)
+    axios.post(`https://assignment-eleven-servertwo-sajib689-sajib689s-projects.vercel.app/foods`, foods)
     .then( res => {
       
         if(res.data){
