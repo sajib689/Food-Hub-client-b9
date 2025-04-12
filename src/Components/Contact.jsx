@@ -17,7 +17,7 @@ const Contact = () => {
     const email = form.email.value
     const message = form.message.value
     const contactInformation = {name,email,message}
-    axios.post('https://assignment-eleven-servertwo.vercel.app/contact',contactInformation)
+    axios.post('https://assignment-eleven-servertwo-sajib689-sajib689s-projects.vercel.app/contact',contactInformation)
     .then( res => {
       if(res.data) {
         Swal.fire({

@@ -23,7 +23,7 @@ const ManageFoodsCard = ({food,refetch}) => {
             text: "Your food has been deleted.",
             icon: "success"
           }) 
-          axios.delete(`https://assignment-eleven-servertwo.vercel.app/foods/${_id}`, _id)
+          axios.delete(`https://assignment-eleven-servertwo-sajib689-sajib689s-projects.vercel.app/foods/${_id}`, _id)
           .then(res => {
               
               refetch()
